@@ -1,6 +1,6 @@
 <?php $this->titre = "Mon Blog"; ?>
 
-<?php foreach ($articles as $article):
+<?php foreach ($payss as $pays):
     ?>
     <article>
         <header>

@@ -1,6 +1,6 @@
 <?php
 
-require_once 'modeles/article.php';
+require_once 'modeles/championnat.php';
 require_once 'vues/vue.php';
 
 class ControllerAccueil {
