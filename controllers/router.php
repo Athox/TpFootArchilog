@@ -30,12 +30,6 @@ class Router {
           else
             throw new Exception("Identifiant de l'article non défini");
         }
-        else if ($_GET['action'] == 'commenter') {
-            $auteur = $this->getParametre($_POST, 'auteur');
-            $contenu = $this->getParametre($_POST, 'contenu');
-            $idArticle = $this->getParametre($_POST, 'id');
-            $this->ctrlArticle->commenter($auteur, $contenu, $idArticle);
-        }
         else
           throw new Exception("Action non valide");
       }
