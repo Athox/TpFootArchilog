@@ -11,9 +11,9 @@ class ControllerChampionnat {
     $this->championnat = new Championnat();
   }
 
-  // Affiche les pays
-  public function afficherPays() {
-    $pays = $this->championnat->getPays();
+  // Affiche les championnats d'un pays
+  public function afficherChampionnats($pays_championnat) {
+    $pays = $this->championnat->getChampionnat($pays_championnat);
     $vue = new Vue("championnat");
     $vue->generer(array('championnat' => $pays));
   }

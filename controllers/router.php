@@ -1,7 +1,7 @@
 <?php
 
 require_once 'controllers/controllerAccueil.php';
-require_once 'controllers/controllerArticle.php';
+require_once 'controllers/controllerChampionnat.php';
 require_once 'vues/Vue.php';
 
 class Router {

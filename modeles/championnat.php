@@ -13,7 +13,7 @@ class Championnat extends Modele {
     }
     
     // Renvoie les championnats d'un pays
-    public function gatChampionnat($pays_championnat) {
+    public function getChampionnat($pays_championnat) {
         $sql = 'SELECT id_championnat, nom_championnat from Championnat'
           . ' where pays_championnat=?';
         $championnat = $this->executerRequete($sql, $pays_championnat);
