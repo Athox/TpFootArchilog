@@ -4,7 +4,7 @@
     ?>
     <article>
         <header>
-            <a href="<?= "index.php?action=article&id=" . $article['Id'] ?>">
+            <a href="<?= "index.php?action=championnat&id=" . $article['Id'] ?>">
                 <h1 class="titreBillet"><?= $article['Titre'] ?></h1>
             </a>
             <time><?= $article['DatePublication'] ?></time>

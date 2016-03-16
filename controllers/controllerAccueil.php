@@ -12,7 +12,7 @@ class ControllerAccueil {
   }
 
   // Affiche la liste de tous les pays
-  public function accueil() {
+  public function pays() {
     $pays = $this->championnat->getPays();
     $vue = new Vue("Accueil");
     $vue->generer(array('pays' => $pays));   

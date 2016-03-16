@@ -18,7 +18,7 @@ class Router {
   public function routerRequete() { //MODIFIER LES IF POUR FAIRE APPARAITRE PAYS PUIS CHAMPIONNATS AU CLIC
     try {
       if (isset($_GET['action'])) {
-        if ($_GET['action'] == 'article') {
+        if ($_GET['action'] == 'championnat') {
           if (isset($_GET['id'])) {
             $idArticle = intval($_GET['id']);
             if ($idArticle != 0) {
@@ -34,7 +34,7 @@ class Router {
           throw new Exception("Action non valide");
       }
       else {  // aucune action définie : affichage de l'accueil
-        $this->ctrlAccueil->accueil();
+        $this->ctrlChampionnat->pays();
       }
     }
     catch (Exception $e) {
