@@ -20,8 +20,8 @@ class Router {
       if (isset($_GET['action'])) {
         if ($_GET['action'] == 'championnat') {
           if (isset($_GET['id'])) {
-            $idArticle = intval($_GET['id']);
-            if ($idArticle != 0) {
+            $pays_championnat = $_GET['id'];
+            if ($pays_championnat != null) {
               $this->ctrlChampionnat->championnats($pays_championnat);
             }
             else
