@@ -22,7 +22,7 @@ class Router {
           if (isset($_GET['id'])) {
             $idArticle = intval($_GET['id']);
             if ($idArticle != 0) {
-              $this->ctrlChampionnat->article($idArticle);
+              $this->ctrlChampionnat->championnats($pays_championnat);
             }
             else
               throw new Exception("Identifiant de l'article non valide");
