@@ -15,20 +15,30 @@ class Router {
   }
 
   // Traite une requête entrante
-  public function routerRequete() { //MODIFIER LES IF POUR FAIRE APPARAITRE PAYS PUIS CHAMPIONNATS AU CLIC
+  public function routerRequete() { 
     try {
       if (isset($_GET['action'])) {
-        if ($_GET['action'] == 'championnat') {
+        if ($_GET['action'] == 'championnat') { // Affichage des championnats si on clic sur un pays
           if (isset($_GET['id'])) {
             $pays_championnat = $_GET['id'];
             if ($pays_championnat != null) {
               $this->ctrlChampionnat->championnats($pays_championnat);
             }
             else
-              throw new Exception("Identifiant de l'article non valide");
+              throw new Exception("Erreur");
           }
           else
-            throw new Exception("Identifiant de l'article non défini");
+            throw new Exception("Erreur");
+        }
+        elseif ($_GET['action'] == 'classement'){ // A faire !!!!!!!!!!!
+        	if (isset($_GET['id'])) {
+        		$pays_championnat = $_GET['id'];
+        		if ($pays_championnat != null) {
+        			$this->ctrlChampionnat->championnats($pays_championnat);
+        		}
+        	}
+        		else
+        			throw new Exception("Erreur");
         }
         else
           throw new Exception("Action non valide");
