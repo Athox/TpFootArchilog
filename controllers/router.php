@@ -34,7 +34,7 @@ class Router {
           throw new Exception("Action non valide");
       }
       else {  // aucune action définie : affichage de l'accueil
-        $this->ctrlChampionnat->pays();
+        $this->ctrlAccueil->pays();
       }
     }
     catch (Exception $e) {
