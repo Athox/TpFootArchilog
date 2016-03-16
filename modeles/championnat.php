@@ -14,9 +14,9 @@ class Championnat extends Modele {
     
     // Renvoie les championnats d'un pays
     public function getChampionnats($pays_championnat) {
-        $sql = 'SELECT id_championnat, nom_championnat FROM Championnat'
+        $sql = 'SELECT id_championnat, nom_championnat, pays_championnat FROM Championnat'
           . ' WHERE pays_championnat=?';
-        $championnats = $this->executerRequete($sql, $pays_championnat);
+        $championnats = $this->executerRequete($sql, array($pays_championnat));
         if ($championnats->rowCount() == 1)
           return $championnats->fetch();  // Accès à la première ligne de résultat
         else

@@ -1,4 +1,4 @@
-<?php $this->titre = "Mon Blog - " . $championnats['pays_championnat']; ?>
+<?php $this->titre = "Mon Blog - " . $championnats["pays_championnat"]; ?>
 
 <?php foreach ($championnats as $championnat):
     ?>
