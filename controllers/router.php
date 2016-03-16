@@ -7,11 +7,11 @@ require_once 'vues/Vue.php';
 class Router {
 
   private $ctrlAccueil;
-  private $ctrlArticle;
+  private $ctrlChampionnat;
 
   public function __construct() {
     $this->ctrlAccueil = new ControllerAccueil();
-    $this->ctrlArticle = new ControllerArticle();
+    $this->ctrlChampionnat = new ControllerChampionnat();
   }
 
   // Traite une requête entrante
@@ -22,7 +22,7 @@ class Router {
           if (isset($_GET['id'])) {
             $idArticle = intval($_GET['id']);
             if ($idArticle != 0) {
-              $this->ctrlArticle->article($idArticle);
+              $this->ctrlChampionnat->article($idArticle);
             }
             else
               throw new Exception("Identifiant de l'article non valide");
