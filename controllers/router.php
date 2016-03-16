@@ -15,7 +15,7 @@ class Router {
   }
 
   // Traite une requête entrante
-  public function routerRequete() {
+  public function routerRequete() { //MODIFIER LES IF POUR FAIRE APPARAITRE PAYS PUIS CHAMPIONNATS AU CLIC
     try {
       if (isset($_GET['action'])) {
         if ($_GET['action'] == 'article') {
