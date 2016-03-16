@@ -17,10 +17,10 @@ class Championnat extends Modele {
         $sql = 'SELECT id_championnat, nom_championnat, pays_championnat FROM Championnat'
           . ' WHERE pays_championnat=?';
         $championnats = $this->executerRequete($sql, array($pays_championnat));
-        //if ($championnats->rowCount() != 0)
+        if ($championnats->rowCount() != 0)
           return $championnats->fetchAll(); // Accès à la première ligne de résultat
-        //else
-         // throw new Exception("Aucun championnat ne correspond au pays '$pays_championnat'");
+        else
+          throw new Exception("Aucun championnat ne correspond au pays '$pays_championnat'");
       }        
 }
 
