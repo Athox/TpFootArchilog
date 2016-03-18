@@ -2,16 +2,19 @@
 
 require_once 'controllers/controllerAccueil.php';
 require_once 'controllers/controllerChampionnat.php';
+require_once 'controllers/controllerEquipe.php';
 require_once 'vues/Vue.php';
 
 class Router {
 
   private $ctrlAccueil;
   private $ctrlChampionnat;
+  private $ctrlEquipe;
 
   public function __construct() {
     $this->ctrlAccueil = new ControllerAccueil();
     $this->ctrlChampionnat = new ControllerChampionnat();
+    $this->ctrlEquipe = new ControllerEquipe();
   }
 
   // Traite une requête entrante
@@ -30,7 +33,7 @@ class Router {
           else
             throw new Exception("Erreur");
         }
-        elseif ($_GET['action'] == 'classement'){ // A faire !!!!!!!!!!!
+        elseif ($_GET['action'] == 'classement'){
         	if (isset($_GET['id'])) {
         		$id_championnat = $_GET['id'];
         		if ($id_championnat != null) {
@@ -39,6 +42,16 @@ class Router {
         	}
         		else
         			throw new Exception("Erreur");
+        }
+        elseif ($_GET['action'] == 'equipe'){ // A faire !!!!!!!!!!!
+        	if (isset($_GET['id'])) {
+        		$id_equipe = $_GET['id'];
+        		if ($id_equipe != null) {
+        			$this->ctrlEquipe->equipes($id_equipe);
+        		}
+        	}
+        	else
+        		throw new Exception("Erreur");
         }
         else
           throw new Exception("Action non valide");

@@ -6,19 +6,19 @@ class Equipe extends Modele {
        
       // Renvoie les informations de l'équipe
       public function getEquipe($id_equipe) {
-      	$sql = 'SELECT Championnat.nom_championnat, Equipe.* 
-      			FROM Equipe INNER JOIN Championnat
+      	$sql = 'SELECT Equipe.*, Stade.*, Championnat.nom_championnat
+      			FROM Equipe 
+      			INNER JOIN Stade
+      			ON Equipe.id_stade = Stade.id_stade
+      			INNER JOIN Championnat
       			ON Equipe.id_championnat = Championnat.id_championnat
-      			WHERE Equipe.id_championnat=?
-      			ORDER BY pts_saison_equipe DESC';
-      	$classement = $this->executerRequete($sql, array($id_championnat));
+      			WHERE Equipe.id_equipe=?';
+      	$classement = $this->executerRequete($sql, array($id_equipe));
       	if ($classement->rowCount() != 0)
       		return $classement->fetchAll();
       		else
-      			throw new Exception("Aucune équipe dans ce championnat");
+      			throw new Exception("Equipe inconnue");
       }
-      
-      // Renvoie les resultats d'une journée
 }
 
 ?>
