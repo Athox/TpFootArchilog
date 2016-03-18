@@ -32,9 +32,9 @@ class Router {
         }
         elseif ($_GET['action'] == 'classement'){ // A faire !!!!!!!!!!!
         	if (isset($_GET['id'])) {
-        		$pays_championnat = $_GET['id'];
-        		if ($pays_championnat != null) {
-        			$this->ctrlChampionnat->championnats($pays_championnat);
+        		$id_championnat = $_GET['id'];
+        		if ($id_championnat != null) {
+        			$this->ctrlChampionnat->classement($id_championnat);
         		}
         	}
         		else

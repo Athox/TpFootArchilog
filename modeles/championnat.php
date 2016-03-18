@@ -21,7 +21,23 @@ class Championnat extends Modele {
           return $championnats->fetchAll();
         else
           throw new Exception("Aucun championnat ne correspond au pays '$pays_championnat'");
-      }        
+      }
+      
+      // Renvoie le classement des equipes d'un championnat
+      public function getClassement($id_championnat) {
+      	$sql = 'SELECT Equipe.nom_equipe, Championnat.nom_championnat
+      			FROM Equipe INNER JOIN Championnat
+      			ON Equipe.id_championnat = Championnat.id_championnat
+      			WHERE Equipe.id_championnat=?
+      			ORDER BY pts_saison_equipe DESC';
+      	$classement = $this->executerRequete($sql, array($id_championnat));
+      	if ($classement->rowCount() != 0)
+      		return $classement->fetchAll();
+      		else
+      			throw new Exception("Aucune équipe dans ce championnat");
+      }
+      
+      // Renvoie les resultats d'un journée
 }
 
 ?>

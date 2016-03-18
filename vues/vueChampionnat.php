@@ -1,13 +1,13 @@
 <?php $this->titre = "Mon Blog - " ?>
 
-
+<h1>Championnats de <?php echo $championnats[0][2]?></h1>
 <?php
 	foreach ($championnats as $championnat):
     ?>
     <article>
-    <h1>Championnats de <?php echo $championnat["pays_championnat"]?></h1>
+    
         <header>
-            <a href="<?= "index.php?action=classement&id=".$championnat["nom_championnat"] ?>">
+            <a href="<?= "index.php?action=classement&id=".$championnat["id_championnat"] ?>">
             <?php echo $championnat["nom_championnat"]?></a>
         </header>
     </article>
