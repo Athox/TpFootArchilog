@@ -1,2 +1,24 @@
 <?php
-//  infos sur equipe, résultas d'une équipe
+
+require_once 'modeles/modele.php';
+
+class Equipe extends Modele {
+       
+      // Renvoie les informations de l'équipe
+      public function getEquipe($id_equipe) {
+      	$sql = 'SELECT Championnat.nom_championnat, Equipe.* 
+      			FROM Equipe INNER JOIN Championnat
+      			ON Equipe.id_championnat = Championnat.id_championnat
+      			WHERE Equipe.id_championnat=?
+      			ORDER BY pts_saison_equipe DESC';
+      	$classement = $this->executerRequete($sql, array($id_championnat));
+      	if ($classement->rowCount() != 0)
+      		return $classement->fetchAll();
+      		else
+      			throw new Exception("Aucune équipe dans ce championnat");
+      }
+      
+      // Renvoie les resultats d'une journée
+}
+
+?>

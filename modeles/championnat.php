@@ -25,7 +25,7 @@ class Championnat extends Modele {
       
       // Renvoie le classement des equipes d'un championnat
       public function getClassement($id_championnat) {
-      	$sql = 'SELECT Equipe.nom_equipe, Championnat.nom_championnat
+      	$sql = 'SELECT Championnat.nom_championnat, Equipe.* 
       			FROM Equipe INNER JOIN Championnat
       			ON Equipe.id_championnat = Championnat.id_championnat
       			WHERE Equipe.id_championnat=?
@@ -37,7 +37,7 @@ class Championnat extends Modele {
       			throw new Exception("Aucune équipe dans ce championnat");
       }
       
-      // Renvoie les resultats d'un journée
+      // Renvoie les resultats d'une journée
 }
 
 ?>
