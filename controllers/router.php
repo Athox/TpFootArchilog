@@ -56,8 +56,15 @@ class Router {
         	else
         		throw new Exception("Erreur");
         }
-        elseif ($_GET['action'] == 'connexion'){ // Connexion à faire
-        	$this->ctrlConnexion->connexion();
+        elseif ($_GET['action'] == 'connexion'){ // Affiche la page de connexion
+        	if (isset($_POST['login']) && isset($_POST['password'])){ //Si le formulaire a été rempli teste login et password pour ouvrir une session
+        		$login = $_POST['login'];
+        		$password = $_POST['password'];
+        		$this->ctrlConnexion->connexion($login, $password);
+        	}
+        	else{ // Si formulaire non rempli, affiche le formulaire
+        		$this->ctrlConnexion->formulaire();
+        	}
         }
         else
           throw new Exception("Action non valide");
