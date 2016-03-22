@@ -3,6 +3,7 @@
 require_once 'controllers/controllerAccueil.php';
 require_once 'controllers/controllerChampionnat.php';
 require_once 'controllers/controllerEquipe.php';
+require_once 'controllers/controllerConnexion.php';
 require_once 'vues/Vue.php';
 
 class Router {
@@ -10,11 +11,13 @@ class Router {
   private $ctrlAccueil;
   private $ctrlChampionnat;
   private $ctrlEquipe;
+  private $ctrlConnexion;
 
   public function __construct() {
     $this->ctrlAccueil = new ControllerAccueil();
     $this->ctrlChampionnat = new ControllerChampionnat();
     $this->ctrlEquipe = new ControllerEquipe();
+    $this->ctrlConnexion = new ControllerConnexion();
   }
 
   // Traite une requête entrante
@@ -52,6 +55,9 @@ class Router {
         	}
         	else
         		throw new Exception("Erreur");
+        }
+        elseif ($_GET['action'] == 'connexion'){ // Connexion à faire
+        	$this->ctrlConnexion->connexion();
         }
         else
           throw new Exception("Action non valide");
