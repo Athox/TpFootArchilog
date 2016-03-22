@@ -61,10 +61,22 @@ class Router {
         		$login = $_POST['login'];
         		$password = $_POST['password'];
         		$this->ctrlConnexion->connexion($login, $password);
+        		
         	}
         	else{ // Si formulaire non rempli, affiche le formulaire
         		$this->ctrlConnexion->formulaire();
         	}
+        }
+        elseif ($_GET['action'] == 'admin'){ // A FAIRE !!!
+        	/*if (isset($_POST['login']) && isset($_POST['password'])){ //Si le formulaire a été rempli teste login et password pour ouvrir une session
+        		$login = $_POST['login'];
+        		$password = $_POST['password'];
+        		$this->ctrlConnexion->connexion($login, $password);
+        
+        	}
+        	else{ // Si formulaire non rempli, affiche le formulaire
+        		$this->ctrlConnexion->formulaire();
+        	}*/
         }
         else
           throw new Exception("Action non valide");

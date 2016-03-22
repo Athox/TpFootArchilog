@@ -21,12 +21,15 @@ class ControllerConnexion {
   // Etablir la connexion
   public function connexion($login, $password){
   	$autorisation = $this->connexion->controllerFormulaire($login, $password);
-  	if($autorisation == true){
+  	if($autorisation == true){ //Si login et password sont ok, afficher la vue Admin
   		session_start();
   		$_SESSION['Admin'] = true;
+  		$tabrd = $this->connexion->afficherTabBord();
+  		$vue = new Vue("Admin");
+  		$vue->generer(array('tabrd' => $tabrd));
   	}
-  	else{
-  		// A FAIRE !!!!!!!!!!!!!
+  	else{ //Sinon re afficher le formulaire
+  		$this->formulaire();
   	}
   }
 }

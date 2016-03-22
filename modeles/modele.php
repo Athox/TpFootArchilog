@@ -34,7 +34,7 @@ abstract class Modele {
         return self::$bdd;
     }
     
-    private function getConnexion() {
+    protected function getConnexion() {
     	$login = Configuration::get("loginAdm");
     	$password = Configuration::get("mdpAdm");
     	$connexion = array($login, $password);
