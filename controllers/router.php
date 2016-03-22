@@ -33,7 +33,7 @@ class Router {
           else
             throw new Exception("Erreur");
         }
-        elseif ($_GET['action'] == 'classement'){
+        elseif ($_GET['action'] == 'classement'){ //Affichage du classement d'un championnat
         	if (isset($_GET['id'])) {
         		$id_championnat = $_GET['id'];
         		if ($id_championnat != null) {
@@ -43,7 +43,7 @@ class Router {
         		else
         			throw new Exception("Erreur");
         }
-        elseif ($_GET['action'] == 'equipe'){ // A faire !!!!!!!!!!!
+        elseif ($_GET['action'] == 'equipe'){ // Affichage des informations sur une équipe
         	if (isset($_GET['id'])) {
         		$id_equipe = $_GET['id'];
         		if ($id_equipe != null) {

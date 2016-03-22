@@ -14,7 +14,6 @@ class ControllerEquipe {
   // Affiche les informations d'uns équipe
   public function equipes($id_equipe) {
     $equipe = $this->equipe->getEquipe($id_equipe);
-    print_r($equipe);
     $vue = new Vue("Equipe");
     $vue->generer(array('equipe' => $equipe)); 
   }
