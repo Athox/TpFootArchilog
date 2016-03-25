@@ -8,15 +8,17 @@
     <body>
         <div id="global">
             <header>
-                <a href="index.php"><h1 id="titreBlog">Mon Blog</h1></a>
-                <p>Je vous souhaite la bienvenue sur ce blog.</p>
+                <a href="index.php"><h1 id="titreSite">Football</h1></a>
+                <div id="menu">
+			        <ul>
+			            <li><a href="index.php">Accueil</a></li>
+			            <li><a href="index.php?action=connexion">Connexion</a></li>
+			        </ul>
+			    </div>
             </header>
             <div id="contenu">
                 <?= $contenu ?>
             </div> <!-- #contenu -->
-            <footer id="piedBlog">
-                Blog réalisé avec le modèle MVC.
-            </footer>
         </div> <!-- #global -->
     </body>
 </html>

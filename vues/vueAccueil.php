@@ -1,15 +1,12 @@
 <?php $this->titre = "Mon Blog"; ?>
 
-<?php foreach ($articles as $article):
+<?php foreach ($pays as $p):
     ?>
     <article>
         <header>
-            <a href="<?= "index.php?action=article&id=" . $article['Id'] ?>">
-                <h1 class="titreBillet"><?= $article['Titre'] ?></h1>
-            </a>
-            <time><?= $article['DatePublication'] ?></time>
+            <a href="<?= "index.php?action=championnat&id=".$p["pays_championnat"] ?>">
+            <?php echo $p["pays_championnat"]?></a>
         </header>
-        <p><?= $article['Contenu'] ?></p>
     </article>
     <hr />
 <?php endforeach; ?>

@@ -33,6 +33,13 @@ abstract class Modele {
         }
         return self::$bdd;
     }
+    
+    protected function getConnexion() {
+    	$login = Configuration::get("loginAdm");
+    	$password = Configuration::get("mdpAdm");
+    	$connexion = array($login, $password);
+    	return $connexion;
+    }
 }
 
 ?>

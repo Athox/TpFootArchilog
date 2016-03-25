@@ -1,40 +1,93 @@
 <?php
 
 require_once 'controllers/controllerAccueil.php';
-require_once 'controllers/controllerArticle.php';
+require_once 'controllers/controllerChampionnat.php';
+require_once 'controllers/controllerEquipe.php';
+require_once 'controllers/controllerConnexion.php';
 require_once 'vues/Vue.php';
 
 class Router {
 
   private $ctrlAccueil;
-  private $ctrlArticle;
+  private $ctrlChampionnat;
+  private $ctrlEquipe;
+  private $ctrlConnexion;
 
   public function __construct() {
     $this->ctrlAccueil = new ControllerAccueil();
-    $this->ctrlArticle = new ControllerArticle();
+    $this->ctrlChampionnat = new ControllerChampionnat();
+    $this->ctrlEquipe = new ControllerEquipe();
+    $this->ctrlConnexion = new ControllerConnexion();
   }
 
   // Traite une requête entrante
-  public function routerRequete() {
+  public function routerRequete() { 
     try {
       if (isset($_GET['action'])) {
-        if ($_GET['action'] == 'article') {
+        if ($_GET['action'] == 'championnat') { // Affichage des championnats si on clic sur un pays
           if (isset($_GET['id'])) {
-            $idArticle = intval($_GET['id']);
-            if ($idArticle != 0) {
-              $this->ctrlArticle->article($idArticle);
+            $pays_championnat = $_GET['id'];
+            if ($pays_championnat != null) {
+              $this->ctrlChampionnat->championnats($pays_championnat);
             }
             else
-              throw new Exception("Identifiant de l'article non valide");
+              throw new Exception("Erreur");
           }
           else
-            throw new Exception("Identifiant de l'article non défini");
+            throw new Exception("Erreur");
+        }
+        elseif ($_GET['action'] == 'classement'){ //Affichage du classement d'un championnat
+        	if (isset($_GET['id'])) {
+        		$id_championnat = $_GET['id'];
+        		if ($id_championnat != null) {
+        			$this->ctrlChampionnat->classement($id_championnat);
+        		}
+        	}
+        		else
+        			throw new Exception("Erreur");
+        }
+        elseif ($_GET['action'] == 'equipe'){ // Affichage des informations sur une équipe
+        	if (isset($_GET['id'])) {
+        		$id_equipe = $_GET['id'];
+        		if ($id_equipe != null) {
+        			$this->ctrlEquipe->equipes($id_equipe);
+        		}
+        	}
+        	else
+        		throw new Exception("Erreur");
+        }
+        elseif ($_GET['action'] == 'connexion'){ // Affiche la page de connexion
+        	if (isset($_POST['login']) && isset($_POST['password'])){ //Si le formulaire a été rempli teste login et password pour ouvrir une session
+        		$login = $_POST['login'];
+        		$password = $_POST['password'];
+        		$this->ctrlConnexion->connexion($login, $password);
+        		
+        	}
+        	else{ // Si formulaire non rempli, affiche le formulaire
+        		$this->ctrlConnexion->formulaire();
+        	}
+        }
+        elseif ($_GET['action'] == 'admin'){ // A FAIRE !!!
+        	if ($_SESSION['Admin']==true){
+        		if(isset($POST['championnat'])){
+        			// Ajouter championnat
+        		}
+        		if(isset($POST['equipe'])){
+        			 // Ajouter équipe
+        		}
+        		if(isset($POST['match'])){
+        			// Ajouter match 
+        		}
+        
+        	}
+        	else
+        		throw new Exception("Erreur");
         }
         else
           throw new Exception("Action non valide");
       }
       else {  // aucune action définie : affichage de l'accueil
-        $this->ctrlAccueil->accueil();
+        $this->ctrlAccueil->pays();
       }
     }
     catch (Exception $e) {
