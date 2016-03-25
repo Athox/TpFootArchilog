@@ -1,9 +1,12 @@
 <?php
 
+session_start();
+
 require_once 'controllers/controllerAccueil.php';
 require_once 'controllers/controllerChampionnat.php';
 require_once 'controllers/controllerEquipe.php';
 require_once 'controllers/controllerConnexion.php';
+require_once 'controllers/controllerAdmin.php';
 require_once 'vues/Vue.php';
 
 class Router {
@@ -12,12 +15,14 @@ class Router {
   private $ctrlChampionnat;
   private $ctrlEquipe;
   private $ctrlConnexion;
+  private $ctrlAdmin;
 
   public function __construct() {
     $this->ctrlAccueil = new ControllerAccueil();
     $this->ctrlChampionnat = new ControllerChampionnat();
     $this->ctrlEquipe = new ControllerEquipe();
     $this->ctrlConnexion = new ControllerConnexion();
+    $this->ctrlAdmin = new ControllerAdmin();
   }
 
   // Traite une requête entrante
@@ -57,11 +62,13 @@ class Router {
         		throw new Exception("Erreur");
         }
         elseif ($_GET['action'] == 'connexion'){ // Affiche la page de connexion
-        	if (isset($_POST['login']) && isset($_POST['password'])){ //Si le formulaire a été rempli teste login et password pour ouvrir une session
+        	if (isset($_SESSION['Admin'])){ // Si la session Admin est déjà ouverte 
+        			$this->ctrlConnexion->pageAdmin();
+        	}
+        	elseif (isset($_POST['login']) && isset($_POST['password'])){ //Si le formulaire a été rempli teste login et password pour ouvrir une session
         		$login = $_POST['login'];
         		$password = $_POST['password'];
         		$this->ctrlConnexion->connexion($login, $password);
-        		
         	}
         	else{ // Si formulaire non rempli, affiche le formulaire
         		$this->ctrlConnexion->formulaire();
@@ -69,16 +76,18 @@ class Router {
         }
         elseif ($_GET['action'] == 'admin'){ // A FAIRE !!!
         	if ($_SESSION['Admin']==true){
-        		if(isset($POST['championnat'])){
-        			// Ajouter championnat
+        		if(isset($POST['championnat'])){ // Ajouter championnat
+        			$championnat = $_POST['championnat'];
+        			
         		}
-        		if(isset($POST['equipe'])){
-        			 // Ajouter équipe
+        		if(isset($POST['equipe'])){ // Ajouter équipe
+        			 $equipe = $_POST['equipe'];
+        			 
         		}
-        		if(isset($POST['match'])){
-        			// Ajouter match 
+        		if(isset($POST['match'])){ // Ajouter match 
+        			$match = $_POST['match'];
+        			
         		}
-        
         	}
         	else
         		throw new Exception("Erreur");

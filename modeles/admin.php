@@ -4,7 +4,7 @@ require_once 'modeles/modele.php';
 
 class Admin extends Modele {
        
-		// Renvoie le tableau de bord Admin
+		// Renvoie le tableau de bord Admin (formulaires d'ajout)
 		public function afficherTabBord(){ //REQUETE POUR RECUP LES CHAMPIONNATS
 			$tabrd[0] = '<form method="post" action="index.php?action=admin">
 							<p>
@@ -136,6 +136,13 @@ class Admin extends Modele {
 						</form>';
 			return $tabrd;
 		}	
+		
+		//Ajouter un championnat dans la BDD
+		public function ajouterChampionnat($nom, $pays, $annee, $nbequipe, $ptsg, $ptsn, $ptsp, $exaequo){ 
+			$sql = 'UPDATE';
+			$pays = $this->executerRequete($sql);
+			return $pays;
+		}
 }
 
 ?>

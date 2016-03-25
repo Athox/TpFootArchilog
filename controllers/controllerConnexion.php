@@ -27,14 +27,19 @@ class ControllerConnexion {
   	if($autorisation == true){ //Si login et password sont ok, afficher la vue Admin
   		session_start();
   		$_SESSION['Admin'] = true;
-  		$tabrd = $this->admin->afficherTabBord();
-  		$vue = new Vue("Admin");
-  		$vue->generer(array('tabrd' => $tabrd));
+  		$this->pageAdmin();
   	}
   	else{ //Sinon re afficher le formulaire
   		$this->formulaire();
   		echo "Espace réservé";
   	}
+  }
+  
+  // Afficher la page de tableau de bord Admin
+  public function pageAdmin(){
+  	$tabrd = $this->admin->afficherTabBord();
+  	$vue = new Vue("Admin");
+  	$vue->generer(array('tabrd' => $tabrd));
   }
 }
 
