@@ -26,15 +26,5 @@ class Connexion extends Modele {
 				return false;
 			}
 		}
-		
-		// Renvoie le tableau de bord Admin
-		public function afficherTabBord(){
-			$tabrd = '<form action="index.php?action=admin">
-							<input type="submit" value="Ajouter Championnat" id="championnat"/>
-							<input type="submit" value="Ajouter Equipe" id="equipe"/>
-							<input type="submit" value="Ajouter Match" id="match"/>
-						</form>';
-			return $tabrd;
-		}	
 }
 ?>

@@ -1,14 +1,17 @@
 <?php
 
 require_once 'modeles/connexion.php';
+require_once 'modeles/admin.php';
 require_once 'vues/Vue.php';
 
 class ControllerConnexion {
 
   private $connexion;
+  private $admin;
 
   public function __construct() {
     $this->connexion = new Connexion();
+    $this->admin = new Admin();
   }
 
   // Affiche la page de connexion
@@ -24,12 +27,13 @@ class ControllerConnexion {
   	if($autorisation == true){ //Si login et password sont ok, afficher la vue Admin
   		session_start();
   		$_SESSION['Admin'] = true;
-  		$tabrd = $this->connexion->afficherTabBord();
+  		$tabrd = $this->admin->afficherTabBord();
   		$vue = new Vue("Admin");
   		$vue->generer(array('tabrd' => $tabrd));
   	}
   	else{ //Sinon re afficher le formulaire
   		$this->formulaire();
+  		echo "Espace réservé";
   	}
   }
 }

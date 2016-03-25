@@ -68,15 +68,20 @@ class Router {
         	}
         }
         elseif ($_GET['action'] == 'admin'){ // A FAIRE !!!
-        	/*if (isset($_POST['login']) && isset($_POST['password'])){ //Si le formulaire a été rempli teste login et password pour ouvrir une session
-        		$login = $_POST['login'];
-        		$password = $_POST['password'];
-        		$this->ctrlConnexion->connexion($login, $password);
+        	if ($_SESSION['Admin']==true){
+        		if(isset($POST['championnat'])){
+        			// Ajouter championnat
+        		}
+        		if(isset($POST['equipe'])){
+        			 // Ajouter équipe
+        		}
+        		if(isset($POST['match'])){
+        			// Ajouter match 
+        		}
         
         	}
-        	else{ // Si formulaire non rempli, affiche le formulaire
-        		$this->ctrlConnexion->formulaire();
-        	}*/
+        	else
+        		throw new Exception("Erreur");
         }
         else
           throw new Exception("Action non valide");

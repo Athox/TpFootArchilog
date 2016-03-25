@@ -30,7 +30,6 @@
   <tr>
   	<td></td>
   	<td>Président: <?php echo $equipe[0]["president_equipe"]?></td>
-  	<td>Téléphone: <?php echo $equipe[0]["tel_stade"]?></td>
   </tr>
   
   <tr>
