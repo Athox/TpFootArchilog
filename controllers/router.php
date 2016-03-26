@@ -74,7 +74,7 @@ class Router {
         		$this->ctrlConnexion->formulaire();
         	}
         }
-        elseif ($_GET['action'] == 'admin'){ // A FAIRE !!!
+        elseif ($_GET['action'] == 'admin'){ // Ajouter des vérifications sur ce que l'on écrit ex: equipes existent...
         	if ($_SESSION['Admin']==true){
         		if($_GET['type'] == 'championnat') { // Ajouter championnat
         			foreach ($_POST as $element){
