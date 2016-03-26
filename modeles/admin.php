@@ -173,7 +173,7 @@ class Admin extends Modele {
 		
 		//Ajouter un match dans la BDD
 		public function ajoutMatch($match){
-			
+			// Faire un trigger pour ajouter matchs dans Equipe
 			
 			$sql = 'INSERT INTO Championnat
 					(nom_championnat  )
