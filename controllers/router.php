@@ -77,17 +77,22 @@ class Router {
         elseif ($_GET['action'] == 'admin'){ // A FAIRE !!!
         	if ($_SESSION['Admin']==true){
         		if($_GET['type'] == 'championnat') { // Ajouter championnat
-        			//array des post
         			foreach ($_POST as $element){
         				$champ[] = $element;
         			}
-        			$this->ctrlAdmin->ajouterChampionnat($champ[0], $champ[1], $champ[2], $champ[3], $champ[4], $champ[5], $champ[6], $champ[7]);
+        			$this->ctrlAdmin->ajouterChampionnat($champ);
         		}
         		if($_GET['type'] == 'equipe'){ // Ajouter équipe
-        			 
+        			foreach ($_POST as $element){
+        				$equipe[] = $element;
+        			}
+        			$this->ctrlAdmin->ajouterEquipe($equipe);
         		}
         		if($_GET['type'] == 'match'){ // Ajouter match 
-        			
+        			foreach ($_POST as $element){
+        				$match[] = $element;
+        			}
+        			$this->ctrlAdmin->ajouterMatch($match);
         		}
         	}
         	else

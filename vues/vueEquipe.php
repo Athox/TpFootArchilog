@@ -24,7 +24,6 @@
   <tr>
   	<td></td>
   	<td>Fondée en: <?php echo $equipe[0]["annee_creation_equipe"]?></td>
-  	<td>Adresse: <?php echo $equipe[0]["adresse_stade"]?></td>
   </tr>
   
   <tr>

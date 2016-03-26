@@ -6,10 +6,8 @@ class Equipe extends Modele {
        
       // Renvoie les informations de l'équipe
       public function getEquipe($id_equipe) {
-      	$sql = 'SELECT Equipe.*, Stade.*, Championnat.nom_championnat
+      	$sql = 'SELECT Equipe.*, Championnat.nom_championnat
       			FROM Equipe 
-      			INNER JOIN Stade
-      			ON Equipe.id_stade = Stade.id_stade
       			INNER JOIN Championnat
       			ON Equipe.id_championnat = Championnat.id_championnat
       			WHERE Equipe.id_equipe=?';

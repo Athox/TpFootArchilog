@@ -19,8 +19,20 @@ class ControllerAdmin {
 	}
 	
 	// Ajouter un championnat à la BDD
-	public function ajouterChampionnat($nom, $pays, $annee, $nbequipe, $ptsg, $ptsp, $ptsn, $exaequo){
-		$this->admin->ajoutChampionnat($nom, $pays, $annee, $nbequipe, $ptsg, $ptsp, $ptsn, $exaequo);
-		echo 'Le championnat a bien été ajouté';
+	public function ajouterChampionnat($champ){
+		$this->admin->ajoutChampionnat($champ);
+		$this->pageAdmin();
+	}
+	
+	// Ajouter une équipe à la BDD
+	public function ajouterEquipe($equipe){
+		$this->admin->ajoutEquipe($equipe);
+		$this->pageAdmin();
+	}
+	
+	// Ajouter un match à la BDD
+	public function ajouterMatch($match){
+		$this->admin->ajoutMatch($match);
+		$this->pageAdmin();
 	}
 }
