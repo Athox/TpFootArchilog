@@ -75,25 +75,30 @@ class Router {
         	}
         }
         elseif ($_GET['action'] == 'admin'){ // Ajouter des vérifications sur ce que l'on écrit ex: equipes existent...
-        	if ($_SESSION['Admin']==true){
-        		if($_GET['type'] == 'championnat') { // Ajouter championnat
-        			foreach ($_POST as $element){
-        				$champ[] = $element;
-        			}
-        			$this->ctrlAdmin->ajouterChampionnat($champ);
-        		}
-        		if($_GET['type'] == 'equipe'){ // Ajouter équipe
-        			foreach ($_POST as $element){
-        				$equipe[] = $element;
-        			}
-        			$this->ctrlAdmin->ajouterEquipe($equipe);
-        		}
-        		if($_GET['type'] == 'match'){ // Ajouter match 
-        			foreach ($_POST as $element){
-        				$match[] = $element;
-        			}
-        			$this->ctrlAdmin->ajouterMatch($match);
-        		}
+        	if (isset($_SESSION['Admin'])){
+	        	if ($_SESSION['Admin']==true){
+	        		if($_GET['type'] == 'championnat') { // Ajouter championnat
+	        			foreach ($_POST as $element){
+	        				$champ[] = $element;
+	        			}
+	        			$this->ctrlAdmin->ajouterChampionnat($champ);
+	        		}
+	        		if($_GET['type'] == 'equipe'){ // Ajouter équipe
+	        			foreach ($_POST as $element){
+	        				$equipe[] = $element;
+	        			}
+	        			$this->ctrlAdmin->ajouterEquipe($equipe);
+	        		}
+	        		if($_GET['type'] == 'match'){ // Ajouter match 
+	        			foreach ($_POST as $element){
+	        				$match[] = $element;
+	        			}
+	        			$this->ctrlAdmin->ajouterMatch($match);
+	        		}
+	        		if($_GET['type'] == 'modifC'){ // Modifier un championnat
+	        			// afficher une vue de modification du championnat
+	        		}
+	        	}
         	}
         	else
         		throw new Exception("Erreur");
