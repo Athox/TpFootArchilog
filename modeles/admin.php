@@ -32,12 +32,29 @@ class Admin extends Modele {
 							</p>
 						</form>';
 			
-			$tabrd[1] = '<form method="post" action="index.php?action=admin">
+			$tabrd[1] = '<form method="post" action="index.php?action=admin&type=championnat">
 							<p>
 								Nom du championnat: <input type="text" name="nom" /></br>
 								Pays: <input type="text" name="pays" /></br>
 								Année: <input type="text" name="annee" /></br>
-								Nombre d\'équipes: <input type="text" name="nbequipe" /></br>
+								Nombre d\'équipes: <select name="nbequipe">
+															<option value="10">10</option>
+															<option value="11">11</option>
+															<option value="12">12</option>
+															<option value="13">13</option>
+															<option value="14">14</option>
+															<option value="15">15</option>
+															<option value="16">16</option>
+															<option value="17">17</option>
+															<option value="18">18</option>
+															<option value="19">19</option>
+															<option value="20">20</option>
+															<option value="21">21</option>
+															<option value="22">22</option>
+															<option value="23">23</option>
+															<option value="24">24</option>
+															<option value="25">25</option>
+														</select></br>
 								Points par match gagné: <select name="ptsg">
 															<option value="0">0</option>
 															<option value="1">1</option>
@@ -65,7 +82,7 @@ class Admin extends Modele {
 								Gestion des exaequos: <select name="exaequo">
 															<option value="difference">Différence</option>
 														</select></br>
-								<input type="submit" value="Ajouter Championnat" id="championnat"/>
+								<input type="submit" value="Ajouter Championnat"/>
 							</p>
 						</form>';
 			
@@ -138,10 +155,11 @@ class Admin extends Modele {
 		}	
 		
 		//Ajouter un championnat dans la BDD
-		public function ajouterChampionnat($nom, $pays, $annee, $nbequipe, $ptsg, $ptsn, $ptsp, $exaequo){ 
-			$sql = 'UPDATE';
-			$pays = $this->executerRequete($sql);
-			return $pays;
+		public function ajoutChampionnat($nom, $pays, $annee, $nbequipe, $ptsg, $ptsp, $ptsn, $exaequo){ 
+			$sql = 'INSERT INTO Championnat 
+					(nom_championnat, pays_championnat, annee_championnat, nb_equipe_championnat, pts_gagne, pts_perdu, pts_nul,type_exaequo) 
+					VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+			$this->ajouterRequete($sql, array($nom, $pays, $annee, $nbequipe, $ptsg, $ptsp, $ptsn, $exaequo));
 		}
 }
 

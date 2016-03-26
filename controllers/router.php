@@ -63,7 +63,7 @@ class Router {
         }
         elseif ($_GET['action'] == 'connexion'){ // Affiche la page de connexion
         	if (isset($_SESSION['Admin'])){ // Si la session Admin est déjà ouverte 
-        			$this->ctrlConnexion->pageAdmin();
+        			$this->ctrlAdmin->pageAdmin();
         	}
         	elseif (isset($_POST['login']) && isset($_POST['password'])){ //Si le formulaire a été rempli teste login et password pour ouvrir une session
         		$login = $_POST['login'];
@@ -76,16 +76,17 @@ class Router {
         }
         elseif ($_GET['action'] == 'admin'){ // A FAIRE !!!
         	if ($_SESSION['Admin']==true){
-        		if(isset($POST['championnat'])){ // Ajouter championnat
-        			$championnat = $_POST['championnat'];
-        			
+        		if($_GET['type'] == 'championnat') { // Ajouter championnat
+        			//array des post
+        			foreach ($_POST as $element){
+        				$champ[] = $element;
+        			}
+        			$this->ctrlAdmin->ajouterChampionnat($champ[0], $champ[1], $champ[2], $champ[3], $champ[4], $champ[5], $champ[6], $champ[7]);
         		}
-        		if(isset($POST['equipe'])){ // Ajouter équipe
-        			 $equipe = $_POST['equipe'];
+        		if($_GET['type'] == 'equipe'){ // Ajouter équipe
         			 
         		}
-        		if(isset($POST['match'])){ // Ajouter match 
-        			$match = $_POST['match'];
+        		if($_GET['type'] == 'match'){ // Ajouter match 
         			
         		}
         	}
