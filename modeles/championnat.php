@@ -45,6 +45,9 @@ class Championnat extends Modele {
       }
       
       // Renvoie les resultats d'une journée
+      public function getJournee($date){
+      	
+      }
       
       // Modifier un championnat dans la BDD
       public function modifierChampionnat ($championnat){

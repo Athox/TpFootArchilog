@@ -120,7 +120,22 @@ class Router {
 	        					$this->ctrlAdmin->pageAdmin();
 	        				}
 	        			}
-	        			else{// Sinon affiche le formulaire de modification du championnat
+	        			else{// Sinon affiche le formulaire de modification de l'équipe
+	        				$id_equipe = $_POST['button'];
+	        				$this->ctrlEquipe->recupererEquipe($id_equipe);
+	        			}
+	        		}
+	        		if($_GET['type'] == 'modifM'){ // Modifier un match
+	        			if(isset($_GET['etat'])){
+	        				if ($_GET['etat']=='ok'){ // Récupère les modifications du formulaire
+	        					foreach ($_POST as $element){
+	        						$match[] = $element;
+	        					}
+	        					$this->ctrlEquipe->modifierEquipe($equipe);
+	        					$this->ctrlAdmin->pageAdmin();
+	        				}
+	        			}
+	        			else{// Sinon affiche le formulaire de modification de l'équipe
 	        				$id_equipe = $_POST['button'];
 	        				$this->ctrlEquipe->recupererEquipe($id_equipe);
 	        			}
