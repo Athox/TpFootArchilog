@@ -74,6 +74,13 @@ class Router {
         		$this->ctrlConnexion->formulaire();
         	}
         }
+        elseif ($_GET['action'] == 'deconnexion'){
+        	if(isset($_SESSION['Admin'])){
+        		$_SESSION = array();
+        		session_destroy();
+        		$this->ctrlAccueil->pays();
+        	}
+        }
         elseif ($_GET['action'] == 'admin'){ // Ajouter des vérifications sur ce que l'on écrit ex: equipes existent...
         	if (isset($_SESSION['Admin'])){
 	        	if ($_SESSION['Admin']==true){
