@@ -96,7 +96,34 @@ class Router {
 	        			$this->ctrlAdmin->ajouterMatch($match);
 	        		}
 	        		if($_GET['type'] == 'modifC'){ // Modifier un championnat
-	        			// afficher une vue de modification du championnat
+	        			if(isset($_GET['etat'])){
+		        			if ($_GET['etat']=='ok'){ // Récupère les modifications du formulaire
+		        				foreach ($_POST as $element){
+		        					$championnat[] = $element;
+		        				}
+		        				$this->ctrlChampionnat->modifierChampionnat($championnat);
+		        				$this->ctrlAdmin->pageAdmin();
+		        			}
+	        			}
+	        			else{// Sinon affiche le formulaire de modification du championnat
+	        			$id_championnat = $_POST['button'];
+	        			$this->ctrlChampionnat->recupererChampionnat($id_championnat);
+	        			}
+	        		}
+	        		if($_GET['type'] == 'modifE'){ // Modifier une équipe
+	        			if(isset($_GET['etat'])){
+	        				if ($_GET['etat']=='ok'){ // Récupère les modifications du formulaire
+	        					foreach ($_POST as $element){
+	        						$equipe[] = $element;
+	        					}
+	        					$this->ctrlEquipe->modifierEquipe($equipe);
+	        					$this->ctrlAdmin->pageAdmin();
+	        				}
+	        			}
+	        			else{// Sinon affiche le formulaire de modification du championnat
+	        				$id_equipe = $_POST['button'];
+	        				$this->ctrlEquipe->recupererEquipe($id_equipe);
+	        			}
 	        		}
 	        	}
         	}

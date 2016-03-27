@@ -24,6 +24,18 @@ class ControllerChampionnat {
   	$vue = new Vue("Classement");
   	$vue->generer(array('classement' => $classement));
   }
+  
+  //Affiche le formulaire de modification de championnat
+  public function recupererChampionnat($id_championnat) {
+  	$championnat = $this->championnat->getChampionnat($id_championnat);
+  	$vue = new Vue("ModificationC");
+  	$vue->generer(array('championnat' => $championnat));
+  }
+  
+  //Modifier un championnat
+public function modifierChampionnat($championnat) {
+  	$this->championnat->modifierChampionnat($championnat);
+  }
 }
 
 ?>

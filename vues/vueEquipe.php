@@ -37,3 +37,12 @@
   </tr>
 
 </table>
+
+<?php 
+            if (isset($_SESSION['Admin'])){
+	            if ($_SESSION['Admin']==true){?>
+	            	<form method="post" action="index.php?action=admin&type=modifE">
+	            		<button name="button" value="<?= $equipe[0]["id_equipe"]?>">Modifier l'équipe</button>
+	            	</form>   	
+            <?php }
+            } ?>
