@@ -5,8 +5,8 @@
 		<h1>Espace Administrateur</h1>
 	</div>
 </div>
-
 <div class="container">
+<div class="col-md-4">
 	<h2>Ajouter un match</h2>
 	<form role="form" method="post" action="index.php?action=admin&type=match">
 		<fieldset class="form-group">
@@ -35,7 +35,7 @@
 		</fieldset>
 		<fieldset class="form-group">
 			<label for="date">Date:</label>
-			<input class="form-control" id="date" type="date" name="date" placeholder="<?= date('Y-m-d')?>"/></br>
+			<input class="form-control" id="date" type="date" name="date" value="<?= date('Y-m-d')?>"/></br>
 		</fieldset>
 		<fieldset class="form-group">
 			<label for="gagne">Gagnant:</label>
@@ -63,11 +63,11 @@
 			<label for="journee">Journee du match:</label> 
 			<input class="form-control" id="journee" type="number" name="journee" />
 		</fieldset>
-		<button type="submit" class="btn btn-primary">Ajouter Match</button>
+		<button type="submit" class="btn btn-default">Ajouter Match</button>
 	</form>
 </div>
 
-<div class="container">
+<div class="col-md-4">
 	<h2>Ajouter une équipe</h2>
 	<form role="form" method="post" action="index.php?action=admin&type=equipe">
 		<fieldset class="form-group">
@@ -130,11 +130,11 @@
 			<label for="nb_matchn">Nombre de matchs nuls:</label>
 			<input class="form-control" id="nb_matchn" type="number" name="nb_matchn" />
 		</fieldset>	
-			<button type="submit" class="btn btn-primary">Ajouter Equipe</button>
+			<button type="submit" class="btn btn-default">Ajouter Equipe</button>
 	</form>
 </div>
 
-<div class="container">
+<div class="col-md-4">
 	<h2>Ajouter un championnat</h2>
 	<form role="form" method="post" action="index.php?action=admin&type=championnat">
 		<fieldset class="form-group">
@@ -183,6 +183,7 @@
 										<option value="difference">Différence</option>
 									</select>
 		</fieldset>
-		<button type="submit" class="btn btn-primary">Ajouter Championnat</button>
+		<button type="submit" class="btn btn-default">Ajouter Championnat</button>
 	</form>
+</div>
 </div>

@@ -1,14 +1,17 @@
 <?php
 
 require_once 'modeles/championnat.php';
+require_once 'modeles/admin.php';
 require_once 'vues/Vue.php';
 
 class ControllerChampionnat {
 
   private $championnat;
+  private $admin;
 
   public function __construct() {
     $this->championnat = new Championnat();
+    $this->admin = new Admin();
   }
 
   // Affiche les championnats d'un pays
@@ -35,8 +38,9 @@ class ControllerChampionnat {
   // Affiche le formulaire de modification de match
   public function recupererMatch($id_match) {
   	$match = $this->championnat->getMatch($id_match);
+  	$championnats = $this->admin->championnatTabBord();
   	$vue = new Vue("ModificationM");
-  	$vue->generer(array('match' => $match));
+  	$vue->generer(array('match' => $match, 'championnats' => $championnats));
   }
   
   // Modifier un match dans la BDD

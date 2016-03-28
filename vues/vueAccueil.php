@@ -5,7 +5,7 @@
 		<h2>Sélection du pays</h2>
 	</div>
 </div>
-
+<div class="container">
 <?php foreach ($pays as $p):?>
     <div class="list-group">
 
@@ -14,3 +14,4 @@
     </div>
 
 <?php endforeach; ?>
+</div>
