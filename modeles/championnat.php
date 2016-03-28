@@ -9,7 +9,7 @@ class Championnat extends Modele {
         $sql = 'SELECT DISTINCT pays_championnat FROM Championnat
               ORDER BY pays_championnat ASC';
         $pays = $this->executerRequete($sql);   
-        return $pays;
+        return $pays->fetchAll();
     }
     
     // Renvoie les championnats d'un pays

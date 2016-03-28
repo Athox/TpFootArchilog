@@ -13,9 +13,10 @@ class ControllerAdmin {
   
 	// Afficher la page de tableau de bord Admin
 	public function pageAdmin(){
-		$tabrd = $this->admin->afficherTabBord();
+		$tabrd = $this->admin->championnatTabBord();
+		$equipe = $this->admin->equipeTabBord();
 		$vue = new Vue("Admin");
-		$vue->generer(array('tabrd' => $tabrd));
+		$vue->generer(array('tabrd' => $tabrd, 'equipe' => $equipe));
 	}
 	
 	// Ajouter un championnat à la BDD
