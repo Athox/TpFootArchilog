@@ -37,14 +37,7 @@
 			<label for="date">Date:</label>
 			<input class="form-control" id="date" type="date" name="date" value="<?= date('Y-m-d')?>"/></br>
 		</fieldset>
-		<fieldset class="form-group">
-			<label for="gagne">Gagnant:</label>
-			<select class="form-control" id="gagne" name="gagne">
-						<option value="0">Match nul</option>
-						<option value="1">Equipe recevante</option>
-						<option value="2">Equipe en déplacement</option>
-					</select>
-		</fieldset>	
+		<input type="hidden" name="gagne" value="0"/>
 		<fieldset class="form-group">
 			<label for="but_dom">Nombre de buts de l'équipe recevante:</label>
 			<select class="form-control" id="but_dom" name="but_dom">

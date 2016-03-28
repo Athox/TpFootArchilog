@@ -19,14 +19,7 @@
 		<label for="date">Date (AAAA-MM-JJ):</label> 
 		<input class="form-control" id="date" type="date" name="date" value="<?= $match['date_match']?>"/>
 	</div>
-	<div class="form-group">
-		<label for="gagne">Gagnant:</label> 
-		<select class="form-control" id="gagne" name="gagne">
-						<option value="0">Match nul</option>
-						<option value="1">Equipe recevante</option>
-						<option value="2">Equipe en déplacement</option>
-				</select>
-	</div>
+	<input type="hidden" name="gagne" value="0"/>
 	<div class="form-group"> 
 		<label for="championnat">Championnat:</label> 
 		<select class="form-control" id="championnat" name="championnat">
@@ -53,6 +46,9 @@
 		<label for="journee">Journee du match:</label> 
 		<input class="form-control" id="journee" type="number" name="journee" value="<?= $match['journee_match']?>"/>
 	</div>
+	<input type="hidden" name="ex_gagne" value="<?= $match['gagnant']?>"/>
+	<input type="hidden" name="ex_but_dom" value="<?= $match['nb_but_dom']?>"/>
+	<input type="hidden" name="ex_but_ext" value="<?= $match['nb_but_ext']?>"/>
 		<button class="btn btn-default" type="submit">Valider</button>
 </form>
 </div>
