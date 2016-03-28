@@ -41,6 +41,19 @@ class Router {
           else
             throw new Exception("Erreur");
         }
+        elseif ($_GET['action'] == 'journee'){ // Afichage des résultats d'une journée
+        	if(isset($_POST['journee']) && isset($_POST['id_championnat'])){
+        		$journee=$_POST['journee'];
+        		$id_championnat = $_POST['id_championnat'];
+        		$this->ctrlChampionnat->journee($journee, $id_championnat);
+        	}
+        }
+        elseif ($_GET['action'] == 'match'){ // Afichage d'un match
+        	if(isset($_GET['id'])){
+        		$id_match=$_GET['id'];
+        		$this->ctrlChampionnat->match($id_match);
+        	}
+        }
         elseif ($_GET['action'] == 'classement'){ //Affichage du classement d'un championnat
         	if (isset($_GET['id'])) {
         		$id_championnat = $_GET['id'];
@@ -138,13 +151,13 @@ class Router {
 	        					foreach ($_POST as $element){
 	        						$match[] = $element;
 	        					}
-	        					$this->ctrlEquipe->modifierEquipe($equipe);
+	        					$this->ctrlChampionnat->modifierMatch($match);
 	        					$this->ctrlAdmin->pageAdmin();
 	        				}
 	        			}
-	        			else{// Sinon affiche le formulaire de modification de l'équipe
-	        				$id_equipe = $_POST['button'];
-	        				$this->ctrlEquipe->recupererEquipe($id_equipe);
+	        			else{// Sinon affiche le formulaire de modification du match
+	        				$id_match = $_POST['button'];
+	        				$this->ctrlChampionnat->recupererMatch($id_match);
 	        			}
 	        		}
 	        	}

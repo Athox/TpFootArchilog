@@ -95,7 +95,7 @@ class Admin extends Modele {
 											</select></br>
 								Equipe recevante: <input type="text" name="equipe_dom" /></br>
 								Equipe en déplacement: <input type="text" name="equipe_ext" /></br>
-								Date: <input type="date" name="date" /></br>
+								Date (AAAA-MM-JJ): <input type="date" name="date" /></br>
 								Gagnant: <select name="gagne">
 															<option value="0">Match nul</option>
 															<option value="1">Equipe recevante</option>
