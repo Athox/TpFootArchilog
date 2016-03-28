@@ -1,8 +1,11 @@
 <?php $this->titre = "Mon Blog"; ?>
 
-<h1>Connexion</h1>
+<div class="page-header">
+	<h1>Connexion</h1>
+</div>
 
+<div class="container">
 <?php 
 	echo $formulaire;
 ?>
-
+</div>

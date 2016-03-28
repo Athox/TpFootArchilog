@@ -66,10 +66,99 @@ class Championnat extends Modele {
       
       // Modifier un match dans la BDD
       public function modifierMatch($match){
+      	if ($match[6]>>$match[7]){
+      		$match[4]=1;
+      	}
+      	elseif ($match[6]<<$match[7]){
+      		$match[4]=2;
+      	}
+      	else{
+      		$match[4]=0;
+      	}
       	$sql = 'UPDATE Matchs SET equipe_dom=?, equipe_ext=?, date_match=?,
       			gagnant=?, id_championnat=?, nb_but_dom=?, nb_but_ext=?, journee_match=?
       			WHERE id_match=?';
       	$this->ajouterRequete($sql, array($match[1], $match[2], $match[3], $match[4], $match[5], $match[6], $match[7], $match[8], $match[0]));
+      	
+      	// Calcul de la différence de buts entre l'ancien match et la modification
+      	$match[6]=$match[6]-$match[10];
+      	$match[7]=$match[7]-$match[11];
+      	
+      	// Update des compteurs de buts
+      	$sqlButDom = 'UPDATE Equipe SET nb_but_marques=nb_but_marques+?, nb_but_concedes=nb_but_concedes+?
+      					WHERE nom_equipe=?';
+      	$this->ajouterRequete($sqlButDom, array($match[6], $match[7], $match[1]));
+      	$sqlButDom = 'UPDATE Equipe SET nb_but_marques=nb_but_marques+?, nb_but_concedes=nb_but_concedes+?
+      					WHERE nom_equipe=?';
+      	$this->ajouterRequete($sqlButDom, array($match[7], $match[6], $match[2]));
+      	
+      	// Update des compteurs de match
+      	if ($match[4]==0){ // Si match nul
+      		if ($match[9]==1){ // Anciennement gagné à domicile
+      			$sqlDom = 'UPDATE Equipe SET pts_saison_equipe=pts_saison_equipe-2, nb_matchn_equipe=nb_matchn_equipe+1,
+						nb_matchg_equipe=nb_matchg_equipe-1
+      					WHERE nom_equipe=?';
+      			$this->ajouterRequete($sqlDom, array($match[1]));
+      			$sqlExt = 'UPDATE Equipe SET pts_saison_equipe=pts_saison_equipe+1,	nb_matchn_equipe=nb_matchn_equipe+1,
+      					nb_matchp_equipe=nb_matchp_equipe-1
+						WHERE nom_equipe=?';
+      			$this->ajouterRequete($sqlExt, array($match[2]));
+      		}
+      		elseif ($match[9]==2){ // Anciennement gagné à l'extérieur
+      			$sqlDom = 'UPDATE Equipe SET pts_saison_equipe=pts_saison_equipe+1, nb_matchn_equipe=nb_matchn_equipe+1,
+						nb_matchp_equipe=nb_matchp_equipe-1
+      					WHERE nom_equipe=?';
+      			$this->ajouterRequete($sqlDom, array($match[1]));
+      			$sqlExt = 'UPDATE Equipe SET pts_saison_equipe=pts_saison_equipe-2,	nb_matchn_equipe=nb_matchn_equipe+1,
+      					nb_matchg_equipe=nb_matchg_equipe-1
+						WHERE nom_equipe=?';
+      			$this->ajouterRequete($sqlExt, array($match[2]));
+      		}
+      	}
+      	elseif ($match[4]==1){ // Si gagné à domicile
+      		if ($match[9]==0){ // Anciennement nul
+      			$sqlDom = 'UPDATE Equipe SET pts_saison_equipe=pts_saison_equipe+2, nb_matchn_equipe=nb_matchn_equipe-1,
+						nb_matchg_equipe=nb_matchg_equipe+1
+      					WHERE nom_equipe=?';
+      			$this->ajouterRequete($sqlDom, array($match[1]));
+      			$sqlExt = 'UPDATE Equipe SET pts_saison_equipe=pts_saison_equipe-1,	nb_matchn_equipe=nb_matchn_equipe-1,
+      					nb_matchp_equipe=nb_matchp_equipe+1
+						WHERE nom_equipe=?';
+      			$this->ajouterRequete($sqlExt, array($match[2]));
+      		}
+      		elseif ($match[9]==2){ // Anciennement gagné à l'extérieur
+      			$sqlDom = 'UPDATE Equipe SET pts_saison_equipe=pts_saison_equipe+3, nb_matchg_equipe=nb_matchg_equipe+1,
+						nb_matchp_equipe=nb_matchp_equipe-1
+      					WHERE nom_equipe=?';
+      			$this->ajouterRequete($sqlDom, array($match[1]));
+      			$sqlExt = 'UPDATE Equipe SET pts_saison_equipe=pts_saison_equipe-3,	nb_matchp_equipe=nb_matchp_equipe+1,
+      					nb_matchg_equipe=nb_matchg_equipe-1
+						WHERE nom_equipe=?';
+      			$this->ajouterRequete($sqlExt, array($match[2]));
+      		}
+      	}
+      	elseif ($match[4]==2){ // Si gagné à l'extérieur
+      		if ($match[9]==0){ // Anciennement nul
+      			$sqlDom = 'UPDATE Equipe SET pts_saison_equipe=pts_saison_equipe-1, nb_matchn_equipe=nb_matchn_equipe-1,
+						nb_matchp_equipe=nb_matchp_equipe+1
+      					WHERE nom_equipe=?';
+      			$this->ajouterRequete($sqlDom, array($match[1]));
+      			$sqlExt = 'UPDATE Equipe SET pts_saison_equipe=pts_saison_equipe+2,	nb_matchn_equipe=nb_matchn_equipe-1,
+      					nb_matchg_equipe=nb_matchg_equipe+1
+						WHERE nom_equipe=?';
+      			$this->ajouterRequete($sqlExt, array($match[2]));
+      		}
+      		elseif ($match[9]==1){ // Anciennement gagné à domicile
+      			$sqlDom = 'UPDATE Equipe SET pts_saison_equipe=pts_saison_equipe-3, nb_matchp_equipe=nb_matchp_equipe+1,
+						nb_matchg_equipe=nb_matchg_equipe-1
+      					WHERE nom_equipe=?';
+      			$this->ajouterRequete($sqlDom, array($match[1]));
+      			$sqlExt = 'UPDATE Equipe SET pts_saison_equipe=pts_saison_equipe+3,	nb_matchp_equipe=nb_matchp_equipe-1,
+      					nb_matchg_equipe=nb_matchg_equipe+1
+						WHERE nom_equipe=?';
+      			$this->ajouterRequete($sqlExt, array($match[2]));
+      		}
+      	}
       }
       
       // Modifier un championnat dans la BDD

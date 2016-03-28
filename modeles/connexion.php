@@ -6,12 +6,16 @@ class Connexion extends Modele {
        
       // Renvoie le formulaire de connexion
       public function afficherFormulaire() {    	
-      	$formulaire = '<form method="post" action="index.php?action=connexion">
-							<p>
-								Login: <input type="text" name="login" /></br>
-								Password: <input type="password" name="password" /></br>
-								<input type="submit" value="Valider" />
-							</p>
+      	$formulaire = '<form role="form" method="post" action="index.php?action=connexion">
+							<div class="form-group">
+								<label for="login">Login:</label>
+      							<input class="form-control" id="login" type="text" name="login" />
+      						</div>
+      						<div class="form-group">
+								<label for="password">Password:</label>
+      							<input class="form-control" id="password" type="password" name="password" />
+      						</div>
+								<button class="btn btn-default" type="submit">Valider</button>
 						</form>';
       	return $formulaire;
 		}
