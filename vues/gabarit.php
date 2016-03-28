@@ -12,7 +12,16 @@
                 <div id="menu">
 			        <ul>
 			            <li><a href="index.php">Accueil</a></li>
-			            <li><a href="index.php?action=connexion">Connexion</a></li>
+			            <?php 
+			            if (isset($_SESSION['Admin'])){
+			            	echo '<li><a href="index.php?action=connexion">Tableau de bord</a></li>';
+			            	echo '<li><a href="index.php?action=deconnexion">Deconnexion</a></li>';
+			            }
+			            else {
+			            	echo '<li><a href="index.php?action=connexion">Connexion</a></li>';
+			            }
+			            ?>
+			            
 			        </ul>
 			    </div>
             </header>

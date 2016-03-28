@@ -1,6 +1,15 @@
 <?php $this->titre = "Mon Blog - " ?>
-
 <h1>Classement de <?php echo $classement[0][0]?></h1>
+
+	<form method="post" action="index.php?action=journee">
+		<input type="hidden" name="id_championnat" value="<?= $classement[0]['id_championnat']?>"/>
+		Voir les résultats de la journee: <select name="journee">
+												<?php for($i=1; $i<=($classement[0]['nb_equipe_championnat']-1)*2; $i++){?>
+												<option value="<?=$i?>"><?=$i?></option>
+												<?php }?></select>
+		<input type="submit" value="Valider"/>
+	</form>
+
 <table>
   <tr>
     <th>Rang</th>

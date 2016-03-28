@@ -1,5 +1,7 @@
 <?php $this->titre = "Mon Blog"; ?>
 
+<h1>Sélection du pays</h1>
+
 <?php foreach ($pays as $p):
     ?>
     <article>

@@ -4,138 +4,81 @@ require_once 'modeles/modele.php';
 
 class Admin extends Modele {
        
-		// Renvoie le tableau de bord Admin
-		public function afficherTabBord(){ //REQUETE POUR RECUP LES CHAMPIONNATS
-			$tabrd[0] = '<form method="post" action="index.php?action=admin">
-							<p>
-								Nom: <input type="text" name="nom" /></br>
-					Entraineur: <input type="text" name="entraineur" /></br>
-					Président: <input type="text" name="president" /></br>
-					Championnat: <select name="championnat"> 
-															<option value="1">Ligue 1</option>
-															<option value="2">Serie A</option>
-															<option value="3">Liga</option>
-															<option value="4">Liga Adelante</option>
-											</select></br>
-					Annees de création: <input type="text" name="annee_creation" /></br>
-					Nom du stade: <input type="text" name="nom_stade" /></br>
-					Capacité du stade: <input type="text" name="capacite_stade" /></br>
-					Adresse du stade: <input type="text" name="adresse_stade" /></br>
-					Nombre de buts marqués dans la saison: <input type="number" name="nb_but_m" /></br>
-					Nombre de buts concédés: <input type="number" name="nb_but_c" /></br>
-					Points durant la saison actuelle: <input type="number" name="pts" /></br>
-					Nombre de matchs joués: <input type="number" name="nb_match" /></br>
-					Nombre de matchs gagnés: <input type="number" name="nb_matchg" /></br>
-					Nombre de matchs perdus: <input type="number" name="nb_matchp" /></br>
-					Nombre de matchs nuls: <input type="number" name="nb_matchn" /></br>
-								<input type="submit" value="Ajouter Equipe" id="equipe"/>
-							</p>
-						</form>';
+		// Renvoie les informations des championnats
+		public function championnatTabBord(){ 
+			$sql = 'SELECT * FROM Championnat';
+			$championnat = $this->executerRequete($sql);
+			return $championnat->fetchAll();
+		}
+		
+		// Renvoie les noms des équipes
+		public function equipeTabBord(){ 
+			$sql = 'SELECT nom_equipe FROM Equipe';
+			$equipe = $this->executerRequete($sql);
+			return $equipe->fetchAll();
+		}
+		
+		//Ajouter un championnat dans la BDD
+		public function ajoutChampionnat($champ){ 
+			$sql = 'INSERT INTO Championnat 
+					(nom_championnat, pays_championnat, annee_championnat, nb_equipe_championnat, pts_gagne, pts_perdu, pts_nul,type_exaequo) 
+					VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+			$this->ajouterRequete($sql, array($champ[0], $champ[1], $champ[2], $champ[3], $champ[4], $champ[5], $champ[6], $champ[7]));
+		}
+		
+		//Ajouter une équipe dans la BDD
+		public function ajoutEquipe($equipe){	
+			$sql = 'INSERT INTO Equipe
+					(nom_equipe,  entraineur_equipe, president_equipe, id_championnat, annee_creation_equipe, 
+					nb_but_marques, nb_but_concedes, pts_saison_equipe, nb_match_equipe, nb_matchg_equipe, 
+					nb_matchp_equipe, nb_matchn_equipe, nom_stade, capacite_stade)
+					VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+			$this->ajouterRequete($sql, array($equipe[0], $equipe[1], $equipe[2], $equipe[3], $equipe[4], $equipe[7], $equipe[8], $equipe[9], $equipe[10], $equipe[11], $equipe[12], $equipe[13], $equipe[5], $equipe[6]));
+		}
+		
+		//Ajouter un match dans la BDD
+		public function ajoutMatch($match){
+			$sql = 'INSERT INTO Matchs
+					(equipe_dom, equipe_ext, date_match, gagnant, nb_but_dom, nb_but_ext, journee_match, id_championnat)
+					VALUES (?, ?, ?, ?, ?, ?, ?)';
+			$this->ajouterRequete($sql, array($match[1], $match[2], $match[3], $match[4], $match[5], $match[6], $match[7], $match[0]));
 			
-			$tabrd[1] = '<form method="post" action="index.php?action=admin">
-							<p>
-								Nom du championnat: <input type="text" name="nom" /></br>
-								Pays: <input type="text" name="pays" /></br>
-								Année: <input type="text" name="annee" /></br>
-								Nombre d\'équipes: <input type="text" name="nbequipe" /></br>
-								Points par match gagné: <select name="ptsg">
-															<option value="0">0</option>
-															<option value="1">1</option>
-															<option value="2">2</option>
-															<option value="3">3</option>
-															<option value="4">4</option>
-															<option value="5">5</option>
-														</select></br>
-								Points par match perdu: <select name="ptsp">
-															<option value="0">0</option>
-															<option value="1">1</option>
-															<option value="2">2</option>
-															<option value="3">3</option>
-															<option value="4">4</option>
-															<option value="5">5</option>
-														</select></br>
-								Points par match nul: <select name="ptsn">
-															<option value="0">0</option>
-															<option value="1">1</option>
-															<option value="2">2</option>
-															<option value="3">3</option>
-															<option value="4">4</option>
-															<option value="5">5</option>
-														</select></br>
-								Gestion des exaequos: <select name="exaequo">
-															<option value="difference">Différence</option>
-														</select></br>
-								<input type="submit" value="Ajouter Championnat" id="championnat"/>
-							</p>
-						</form>';
-			
-			$tabrd[2] = '<form method="post" action="index.php?action=admin">
-							<p>
-								Championnat: <select name="championnat">
-															<option value="1">Ligue 1</option>
-															<option value="2">Serie A</option>
-															<option value="3">Liga</option>
-															<option value="4">Liga Adelante</option>
-											</select></br>
-								Equipe recevante: <input type="text" name="equipe_dom" /></br>
-								Equipe en déplacement: <input type="text" name="equipe_ext" /></br>
-								Date: <input type="date" name="date" /></br>
-								Gagnant: <select name="gagne">
-															<option value="0">Match nul</option>
-															<option value="1">Equipe recevante</option>
-															<option value="2">Equipe en déplacement</option>
-											</select></br>
-								Nombre de buts de l\'équipe recevante: <select name="but_dom">
-															<option value="0">0</option>
-															<option value="1">1</option>
-															<option value="2">2</option>
-															<option value="3">3</option>
-															<option value="4">4</option>
-															<option value="5">5</option>
-															<option value="6">6</option>
-															<option value="7">7</option>
-															<option value="8">8</option>
-															<option value="9">9</option>
-															<option value="10">10</option>
-															<option value="11">11</option>
-															<option value="12">12</option>
-															<option value="13">13</option>
-															<option value="14">14</option>
-															<option value="15">15</option>
-															<option value="16">16</option>
-															<option value="17">17</option>
-															<option value="18">18</option>
-															<option value="19">19</option>
-															<option value="20">20</option>
-														</select></br>
-								Nombre de buts de l\'équipe en déplacement: <select name="but_ext">
-															<option value="0">0</option>
-															<option value="1">1</option>
-															<option value="2">2</option>
-															<option value="3">3</option>
-															<option value="4">4</option>
-															<option value="5">5</option>
-															<option value="6">6</option>
-															<option value="7">7</option>
-															<option value="8">8</option>
-															<option value="9">9</option>
-															<option value="10">10</option>
-															<option value="11">11</option>
-															<option value="12">12</option>
-															<option value="13">13</option>
-															<option value="14">14</option>
-															<option value="15">15</option>
-															<option value="16">16</option>
-															<option value="17">17</option>
-															<option value="18">18</option>
-															<option value="19">19</option>
-															<option value="20">20</option>
-														</select></br>
-								<input type="submit" value="Ajouter Match" id="match"/>
-							</p>
-						</form>';
-			return $tabrd;
-		}	
+			// Update des données des équipes (nb_match, pts, etc...)
+			if ($match[4]==0){ // Si match nul
+				$sqlDom = 'UPDATE Equipe SET nb_but_marques=nb_but_marques+?, nb_but_concedes=nb_but_concedes+?, 
+						pts_saison_equipe=pts_saison_equipe+1, nb_match_equipe=nb_match_equipe+1, 
+						nb_matchn_equipe=nb_matchn_equipe+1
+						WHERE nom_equipe=?';
+				$this->ajouterRequete($sqlDom, array($match[5], $match[6], $match[1]));
+				$sqlExt = 'UPDATE Equipe SET nb_but_marques=nb_but_marques+?, nb_but_concedes=nb_but_concedes+?, 
+						pts_saison_equipe=pts_saison_equipe+1, nb_match_equipe=nb_match_equipe+1, 
+						nb_matchn_equipe=nb_matchn_equipe+1
+						WHERE nom_equipe=?';
+				$this->ajouterRequete($sqlExt, array($match[6], $match[5], $match[2]));
+			}
+			elseif ($match[4]==1){ // Si équipe à domicile gagne
+				$sqlDom = 'UPDATE Equipe SET nb_but_marques=nb_but_marques+?, nb_but_concedes=nb_but_concedes+?,
+					pts_saison_equipe=pts_saison_equipe+3, nb_match_equipe=nb_match_equipe+1,
+					nb_matchg_equipe=nb_matchg_equipe+1
+					WHERE nom_equipe=?';
+				$this->ajouterRequete($sqlDom, array($match[5], $match[6], $match[1]));
+				$sqlExt = 'UPDATE Equipe SET nb_but_marques=nb_but_marques+?, nb_but_concedes=nb_but_concedes+?,
+						nb_match_equipe=nb_match_equipe+1, nb_matchp_equipe=nb_matchp_equipe+1
+						WHERE nom_equipe=?';
+				$this->ajouterRequete($sqlExt, array($match[6], $match[5], $match[2]));
+			}
+			elseif ($match[4]==2){ // Si équipe en déplacement gagne
+				$sqlDom = 'UPDATE Equipe SET nb_but_marques=nb_but_marques+?, nb_but_concedes=nb_but_concedes+?,
+					nb_match_equipe=nb_match_equipe+1, nb_matchp_equipe=nb_matchp_equipe+1
+					WHERE nom_equipe=?';
+				$this->ajouterRequete($sqlDom, array($match[5], $match[6], $match[1]));
+				$sqlExt = 'UPDATE Equipe SET nb_but_marques=nb_but_marques+?, nb_but_concedes=nb_but_concedes+?,
+						pts_saison_equipe=pts_saison_equipe+3, nb_match_equipe=nb_match_equipe+1, 
+						nb_matchg_equipe=nb_matchg_equipe+1
+						WHERE nom_equipe=?';
+				$this->ajouterRequete($sqlExt, array($match[6], $match[5], $match[2]));
+			}
+		}
 }
 
 ?>
