@@ -40,7 +40,7 @@ class Admin extends Modele {
 		public function ajoutMatch($match){
 			$sql = 'INSERT INTO Matchs
 					(equipe_dom, equipe_ext, date_match, gagnant, nb_but_dom, nb_but_ext, journee_match, id_championnat)
-					VALUES (?, ?, ?, ?, ?, ?, ?)';
+					VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
 			$this->ajouterRequete($sql, array($match[1], $match[2], $match[3], $match[4], $match[5], $match[6], $match[7], $match[0]));
 			
 			// Update des données des équipes (nb_match, pts, etc...)
