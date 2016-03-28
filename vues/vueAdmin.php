@@ -134,32 +134,55 @@
 	</form>
 </div>
 
-<h2>Ajouter un championnat</h2>
-
-<form method="post" action="index.php?action=admin&type=championnat">
-	<p>
-		Nom du championnat: <input type="text" name="nom" /></br>
-		Pays: <input type="text" name="pays" /></br>
-		Année: <input type="text" name="annee" /></br>
-		Nombre d\'équipes: <select name="nbequipe">
-								<?php for($i=0; $i<=40; $i++){?>
-									<option value="<?= $i?>"><?= $i?></option><?php }?>
-							</select></br>
-		Points par match gagné: <select name="ptsg">
-									<?php for($i=0; $i<=5; $i++){?>
+<div class="container">
+	<h2>Ajouter un championnat</h2>
+	<form role="form" method="post" action="index.php?action=admin&type=championnat">
+		<fieldset class="form-group">
+			<label for="nom">Nom du championnat:</label>
+			<input class="form-control" id="nom" type="text" name="nom" />
+		</fieldset>	
+		<fieldset class="form-group">
+			<label for="pays">Pays:</label>
+			<input class="form-control" id="pays" type="text" name="pays" />
+		</fieldset>
+		<fieldset class="form-group">
+			<label for="annee">Année:</label>
+			<input class="form-control" id="annee" type="text" name="annee" />
+		</fieldset>	
+		<fieldset class="form-group">
+			<label for="nbequipe">Nombre d\'équipes:</label>
+			<select class="form-control" id="nbequipe" name="nbequipe">
+									<?php for($i=0; $i<=40; $i++){?>
 										<option value="<?= $i?>"><?= $i?></option><?php }?>
-								</select></br>
-		Points par match perdu: <select name="ptsp">
-									<?php for($i=0; $i<=5; $i++){?>
-										<option value="<?= $i?>"><?= $i?></option><?php }?>
-								</select></br>						
-		Points par match nul: <select name="ptsn">
-									<?php for($i=0; $i<=5; $i++){?>
-										<option value="<?= $i?>"><?= $i?></option><?php }?>
-								</select></br>
-		Gestion des exaequos: <select name="exaequo">
-									<option value="difference">Différence</option>
-								</select></br>
-		<input type="submit" value="Ajouter Championnat"/>
-	</p>
-</form>
+								</select>
+		</fieldset>						
+		<fieldset class="form-group">
+			<label for="ptsg">Points par match gagné:</label>
+			<select class="form-control" id="ptsg" name="ptsg">
+										<?php for($i=0; $i<=5; $i++){?>
+											<option value="<?= $i?>"><?= $i?></option><?php }?>
+									</select>
+		</fieldset>	
+		<fieldset class="form-group">
+			<label for="ptsp">Points par match perdu:</label>
+			<select class="form-control" id="ptsp" name="ptsp">
+										<?php for($i=0; $i<=5; $i++){?>
+											<option value="<?= $i?>"><?= $i?></option><?php }?>
+									</select>
+		</fieldset>
+		<fieldset class="form-group">						
+			<label for="ptsn">Points par match nul:</label>
+			<select class="form-control" id="ptsn" name="ptsn">
+										<?php for($i=0; $i<=5; $i++){?>
+											<option value="<?= $i?>"><?= $i?></option><?php }?>
+									</select>
+		</fieldset>
+		<fieldset class="form-group">
+			<label for="exaequo">Gestion des exaequos:</label>
+			<select class="form-control" id="exaequo" name="exaequo">
+										<option value="difference">Différence</option>
+									</select>
+		</fieldset>
+		<button type="submit" class="btn btn-primary">Ajouter Championnat</button>
+	</form>
+</div>
