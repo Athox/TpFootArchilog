@@ -1,21 +1,21 @@
 <?php
 
-require_once 'modeles/article.php';
+require_once 'modeles/championnat.php';
 require_once 'vues/vue.php';
 
 class ControllerAccueil {
 
-  private $article;
+  private $championnat;
 
   public function __construct() {
-    $this->article = new Article();
+    $this->championnat = new Championnat();
   }
 
-  // Affiche la liste de tous les articles du blog
-  public function accueil() {
-    $articles = $this->article->getArticles();
+  // Affiche la liste de tous les pays
+  public function pays() {
+    $pays = $this->championnat->getPays();
     $vue = new Vue("Accueil");
-    $vue->generer(array('articles' => $articles));   
+    $vue->generer(array('pays' => $pays));   
   }
   
 }

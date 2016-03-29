@@ -19,6 +19,16 @@ abstract class Modele {
         }
         return $resultat;
     }
+    
+    protected function ajouterRequete($sql, $params = null) {
+    	if ($params == null) {
+    		$this->getBdd()->exec($sql);    // exécution directe
+    	}
+    	else {
+    		$resultat = $this->getBdd()->prepare($sql);  // requête préparée
+    		$resultat->execute($params);
+    	}
+    }
 
     // Renvoie un objet de connexion à la BD en initialisant la connexion au besoin
     private function getBdd() {
@@ -32,6 +42,13 @@ abstract class Modele {
                     array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         }
         return self::$bdd;
+    }
+    
+    protected function getConnexion() {
+    	$login = Configuration::get("loginAdm");
+    	$password = Configuration::get("mdpAdm");
+    	$connexion = array($login, $password);
+    	return $connexion;
     }
 }
 
