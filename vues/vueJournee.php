@@ -27,7 +27,7 @@
 		</tr>
 		<tr>
 			<td><?php echo $match['equipe_dom']?></td>
-			<td><?php echo $match['nb_but_dom']?> - <?php echo $match['nb_but_ext']?></td>
+			<td><?php echo '<img src="images/'.$match['equipe_dom'].'.png" height="50"/>'?><?php echo $match['nb_but_dom']?> - <?php echo $match['nb_but_ext']?><?php echo '<img src="images/'.$match['equipe_ext'].'.png" height="50"/>'?></td>
 			<td><?php echo $match['equipe_ext']?></td>
 			<?php if(isset($_SESSION['Admin']) && $_SESSION['Admin']==true){?>
 			<td>
