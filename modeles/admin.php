@@ -54,7 +54,7 @@ class Admin extends Modele {
 					(equipe_dom, equipe_ext, date_match, gagnant, nb_but_dom, nb_but_ext, journee_match, id_championnat)
 					VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
 			$this->ajouterRequete($sql, array($match[1], $match[2], $match[3], $match[4], $match[5], $match[6], $match[7], $match[0]));
-			/*
+			
 			// Update des données des équipes (nb_match, pts, etc...)
 			if ($match[4]==0){ // Si match nul
 				$sqlDom = 'UPDATE Equipe SET nb_but_marques=nb_but_marques+?, nb_but_concedes=nb_but_concedes+?, 
@@ -89,7 +89,7 @@ class Admin extends Modele {
 						nb_matchg_equipe=nb_matchg_equipe+1
 						WHERE nom_equipe=?';
 				$this->ajouterRequete($sqlExt, array($match[6], $match[5], $match[2]));
-			}*/
+			}
 		}
 }
 
