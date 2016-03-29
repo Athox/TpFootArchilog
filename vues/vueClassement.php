@@ -10,9 +10,9 @@
 			<input type="hidden" name="id_championnat" value="<?= $classement[0]['id_championnat']?>"/>
 			<label for="journee">Voir les résultats de la journee:</label>
 			<select class="form-control" id="journee" name="journee">
-				<?php for($i=1; $i<=($classement[0]['nb_equipe_championnat']-1)*2; $i++){?>
-					<option value="<?=$i?>"><?=$i?></option>
-				<?php }?></select>
+				<?php foreach ($nbJournees as $elem):?>
+					<option value="<?=$elem['journee_match']?>"><?=$elem['journee_match']?></option>
+				<?php endforeach;?></select>
 		</div>
 		<button type="submit" class="btn btn-default">Valider</button>
 	</form>

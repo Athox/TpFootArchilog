@@ -44,6 +44,13 @@ class Championnat extends Modele {
       			throw new Exception("Aucune équipe dans ce championnat");
       }
       
+      // Renvoie les journées jouées
+      public function getNbJournees($id_championnat){
+      	$sql = 'SELECT DISTINCT journee_match FROM Matchs WHERE id_championnat=?';
+      	$nbJournees = $this->executerRequete($sql, array($id_championnat));
+      	return $nbJournees->fetchAll();
+      }
+      
       // Renvoie les resultats d'une journée
       public function getJournee($journee, $id_championnat){
       	$sql = 'SELECT * FROM Matchs WHERE journee_match=? AND id_championnat=? ORDER BY date_match';
