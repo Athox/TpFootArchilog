@@ -19,11 +19,11 @@
 	<table class="table">
 		<thead class="thead-inverse">
 	  		<tr>
-	  			<th>Maillot</th>
+	  			<th>Blason</th>
 	  		</tr>	
 		</thead>
 		<tr>
-			<td>maillot</td>
+			<td><?php echo '<img src="'.$equipe[0]['blason_equipe'].'">'?></td>
 		</tr>
 	</table>
 </div>	

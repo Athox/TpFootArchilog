@@ -21,6 +21,7 @@
 	<thead class="thead-inverse">
 	  <tr>
 	    <th>Rang</th>
+	    <th></th>
 	    <th>Equipe</th>
 	    <th>Pts</th>
 	    <th>J.</th>
@@ -40,6 +41,7 @@
 		    ?>
 		  <tr>
 		    <th scope="row"><?php echo $i?></th>
+		    <td><?php echo '<img src="'.$cls['blason_equipe'].'" height="50"/>'?></td>
 		    <td><a href="<?= "index.php?action=equipe&id=".$cls["id_equipe"] ?>"> <?php echo $cls["nom_equipe"]?></a></td>
 		  	<td><?php echo $cls["pts_saison_equipe"]?></td>
 		  	<td><?php echo $cls["nb_match_equipe"]?></td>

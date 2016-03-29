@@ -62,7 +62,7 @@
 
 <div class="col-md-4">
 	<h2>Ajouter une équipe</h2>
-	<form role="form" method="post" action="index.php?action=admin&type=equipe">
+	<form role="form" method="post" action="index.php?action=admin&type=equipe" enctype="multipart/form-data">
 		<fieldset class="form-group">
 			<label for="nom">Nom:</label>
 			<input class="form-control" id="nom" type="text" name="nom" />
@@ -123,7 +123,11 @@
 			<label for="nb_matchn">Nombre de matchs nuls:</label>
 			<input class="form-control" id="nb_matchn" type="number" name="nb_matchn" />
 		</fieldset>	
-			<button type="submit" class="btn btn-default">Ajouter Equipe</button>
+		<fieldset class="form-group">
+			<label class="control-label">Blason:</label>
+			<input class="file" id="blason" type="file" name="blason" />
+		</fieldset>	
+		<button type="submit" class="btn btn-default">Ajouter Equipe</button>
 	</form>
 </div>
 

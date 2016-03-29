@@ -66,10 +66,10 @@ class Championnat extends Modele {
       
       // Modifier un match dans la BDD
       public function modifierMatch($match){
-      	if ($match[6]>>$match[7]){
+      	if ($match[6]>$match[7]){
       		$match[4]=1;
       	}
-      	elseif ($match[6]<<$match[7]){
+      	elseif ($match[6]<$match[7]){
       		$match[4]=2;
       	}
       	else{
