@@ -10,9 +10,9 @@
 			<input type="hidden" name="id_championnat" value="<?= $classement[0]['id_championnat']?>"/>
 			<label for="journee">Voir les résultats de la journee:</label>
 			<select class="form-control" id="journee" name="journee">
-				<?php for($i=1; $i<=($classement[0]['nb_equipe_championnat']-1)*2; $i++){?>
-					<option value="<?=$i?>"><?=$i?></option>
-				<?php }?></select>
+				<?php foreach ($nbJournees as $elem):?>
+					<option value="<?=$elem['journee_match']?>"><?=$elem['journee_match']?></option>
+				<?php endforeach;?></select>
 		</div>
 		<button type="submit" class="btn btn-default">Valider</button>
 	</form>
@@ -21,6 +21,7 @@
 	<thead class="thead-inverse">
 	  <tr>
 	    <th>Rang</th>
+	    <th></th>
 	    <th>Equipe</th>
 	    <th>Pts</th>
 	    <th>J.</th>
@@ -40,6 +41,7 @@
 		    ?>
 		  <tr>
 		    <th scope="row"><?php echo $i?></th>
+		    <td><?php echo '<img src="'.$cls['blason_equipe'].'" height="50"/>'?></td>
 		    <td><a href="<?= "index.php?action=equipe&id=".$cls["id_equipe"] ?>"> <?php echo $cls["nom_equipe"]?></a></td>
 		  	<td><?php echo $cls["pts_saison_equipe"]?></td>
 		  	<td><?php echo $cls["nb_match_equipe"]?></td>

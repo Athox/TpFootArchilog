@@ -33,6 +33,13 @@ class ControllerEquipe {
   public function modifierEquipe($equipe) {
   	$this->equipe->modifierEquipe($equipe);
   }
+  
+  // Affiche les résultats d'une équipe
+  public function resultat($nom_equipe){
+  	$resultats = $this->equipe->getResultats($nom_equipe);
+  	$vue = new Vue("Resultats");
+  	$vue->generer(array('resultats' => $resultats));
+  }
 }
 
 ?>

@@ -19,11 +19,11 @@
 	<table class="table">
 		<thead class="thead-inverse">
 	  		<tr>
-	  			<th>Maillot</th>
+	  			<th>Blason</th>
 	  		</tr>	
 		</thead>
 		<tr>
-			<td>maillot</td>
+			<td><?php echo '<img src="'.$equipe[0]['blason_equipe'].'">'?></td>
 		</tr>
 	</table>
 </div>	
@@ -73,5 +73,9 @@
 		 	<td><?php echo $equipe[0]["capacite_stade"]?></td>
 		 </tr>
 	</table>
+	<form role="form" method="post" action="index.php?action=resultat">
+		 	<input type="hidden" name="nom_equipe" value="<?= $equipe[0]['nom_equipe']?>"/>
+		 	<button type="submit" class="btn btn-default">Voir les resultats</button>
+	</form>
 </div> 
 </div>

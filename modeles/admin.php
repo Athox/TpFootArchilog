@@ -6,14 +6,14 @@ class Admin extends Modele {
        
 		// Renvoie les informations des championnats
 		public function championnatTabBord(){ 
-			$sql = 'SELECT * FROM Championnat';
+			$sql = 'SELECT * FROM Championnat ORDER BY pays_championnat, nom_championnat ASC';
 			$championnat = $this->executerRequete($sql);
 			return $championnat->fetchAll();
 		}
 		
 		// Renvoie les noms des équipes
 		public function equipeTabBord(){ 
-			$sql = 'SELECT nom_equipe FROM Equipe';
+			$sql = 'SELECT nom_equipe FROM Equipe ORDER BY id_championnat, nom_equipe ASC';
 			$equipe = $this->executerRequete($sql);
 			return $equipe->fetchAll();
 		}
@@ -28,23 +28,26 @@ class Admin extends Modele {
 		
 		//Ajouter une équipe dans la BDD
 		public function ajoutEquipe($equipe){	
+			$url = 'images/'.$equipe[0].'.png';
+			move_uploaded_file($_FILES['blason']['tmp_name'], $url);
 			$sql = 'INSERT INTO Equipe
 					(nom_equipe,  entraineur_equipe, president_equipe, id_championnat, annee_creation_equipe, 
 					nb_but_marques, nb_but_concedes, pts_saison_equipe, nb_match_equipe, nb_matchg_equipe, 
-					nb_matchp_equipe, nb_matchn_equipe, nom_stade, capacite_stade)
-					VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-			$this->ajouterRequete($sql, array($equipe[0], $equipe[1], $equipe[2], $equipe[3], $equipe[4], $equipe[7], $equipe[8], $equipe[9], $equipe[10], $equipe[11], $equipe[12], $equipe[13], $equipe[5], $equipe[6]));
+					nb_matchp_equipe, nb_matchn_equipe, nom_stade, capacite_stade, blason_equipe)
+					VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+			$this->ajouterRequete($sql, array($equipe[0], $equipe[1], $equipe[2], $equipe[3], $equipe[4], $equipe[7], $equipe[8], $equipe[9], 
+					$equipe[10], $equipe[11], $equipe[12], $equipe[13], $equipe[5], $equipe[6], $url));
 		}
 		
 		//Ajouter un match dans la BDD
 		public function ajoutMatch($match){
-			if($match[5]>>$match[6]){
+			if($match[5]>$match[6]){
 				$match[4]=1;
 			}
-			elseif ($match[5]<<$match[6]){
+			elseif ($match[5]<$match[6]){
 				$match[4]=2;
 			}
-			else {
+			elseif ($match[5]==$match[6]) {
 				$match[4]=0;
 			}
 			$sql = 'INSERT INTO Matchs

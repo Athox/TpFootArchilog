@@ -48,6 +48,12 @@ class Router {
         		$this->ctrlChampionnat->journee($journee, $id_championnat);
         	}
         }
+        elseif ($_GET['action'] == 'resultat'){ // Afichage des résultat d'une équipe
+        	if(isset($_POST['nom_equipe'])){
+        		$nom_equipe=$_POST['nom_equipe'];
+        		$this->ctrlEquipe->resultat($nom_equipe);
+        	}
+        }
         elseif ($_GET['action'] == 'match'){ // Afichage d'un match
         	if(isset($_GET['id'])){
         		$id_match=$_GET['id'];

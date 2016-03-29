@@ -10,9 +10,9 @@
 			<div class="form-group">
 				<label for="journee">Voir les résultats de la journee:</label> 
 				<select class="form-control" id="journee" name="journee">
-								<?php for($i=1; $i<=38; $i++){?>
-									<option value="<?=$i?>"><?=$i?></option>
-								<?php }?></select>
+								<?php foreach ($nbJournees as $elem):?>
+					<option value="<?=$elem['journee_match']?>"><?=$elem['journee_match']?></option>
+				<?php endforeach;?></select>
 			</div>
 			<button class="btn btn-default" type="submit">Valider</button>
 		</form>
@@ -27,7 +27,7 @@
 		</tr>
 		<tr>
 			<td><?php echo $match['equipe_dom']?></td>
-			<td><?php echo $match['nb_but_dom']?> - <?php echo $match['nb_but_ext']?></td>
+			<td><?php echo '<img src="images/'.$match['equipe_dom'].'.png" height="50"/>'?>      <?php echo $match['nb_but_dom']?> - <?php echo $match['nb_but_ext']?>      <?php echo '<img src="images/'.$match['equipe_ext'].'.png" height="50"/>'?></td>
 			<td><?php echo $match['equipe_ext']?></td>
 			<?php if(isset($_SESSION['Admin']) && $_SESSION['Admin']==true){?>
 			<td>
