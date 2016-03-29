@@ -26,6 +26,18 @@ class Equipe extends Modele {
       			WHERE id_equipe=?';
       	$this->ajouterRequete($sql, array($equipe[1], $equipe[2], $equipe[3], $equipe[4], $equipe[5], $equipe[8],$equipe[9],$equipe[10],$equipe[11],$equipe[12],$equipe[13],$equipe[14],$equipe[6], $equipe[7], $equipe[0]));
       }
+      
+      // Renvoie les matchs d'une équipe
+      public function getResultats($nom_equipe) {
+      	$sql = 'SELECT * FROM Matchs WHERE equipe_dom=? OR equipe_ext=?';
+      	$resultats = $this->executerRequete($sql, array($nom_equipe, $nom_equipe));
+      	if ($resultats->rowCount() != 0){
+      		return $resultats->fetchAll();
+      	}
+      	else{
+      			throw new Exception("Erreur");
+      	}
+      }
 }
 
 ?>
