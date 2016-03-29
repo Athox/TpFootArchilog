@@ -39,8 +39,9 @@ class ControllerChampionnat {
   public function recupererMatch($id_match) {
   	$match = $this->championnat->getMatch($id_match);
   	$championnats = $this->admin->championnatTabBord();
+  	$equipes = $this->admin->equipeTabBord();
   	$vue = new Vue("ModificationM");
-  	$vue->generer(array('match' => $match, 'championnats' => $championnats));
+  	$vue->generer(array('match' => $match, 'championnats' => $championnats, 'equipes' => $equipes));
   }
   
   // Modifier un match dans la BDD

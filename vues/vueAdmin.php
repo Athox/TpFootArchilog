@@ -21,7 +21,7 @@
 			<label for="equipe_dom">Equipe recevante:</label>
 			<select name="equipe_dom" class="form-control" id="equipe_dom">
 									<?php foreach ($equipe as $elem):?>
-									<option value="<?= $elem['nom_equipe']?>"><?= $elem['nom_equipe'] ?></option>
+										<option value="<?= $elem['nom_equipe']?>"><?= $elem['nom_equipe'] ?></option>
 									<?php endforeach;?>
 								</select>
 		</fieldset>

@@ -6,14 +6,14 @@ class Admin extends Modele {
        
 		// Renvoie les informations des championnats
 		public function championnatTabBord(){ 
-			$sql = 'SELECT * FROM Championnat';
+			$sql = 'SELECT * FROM Championnat ORDER BY pays_championnat, nom_championnat ASC';
 			$championnat = $this->executerRequete($sql);
 			return $championnat->fetchAll();
 		}
 		
 		// Renvoie les noms des équipes
 		public function equipeTabBord(){ 
-			$sql = 'SELECT nom_equipe FROM Equipe';
+			$sql = 'SELECT nom_equipe FROM Equipe ORDER BY id_championnat, nom_equipe ASC';
 			$equipe = $this->executerRequete($sql);
 			return $equipe->fetchAll();
 		}

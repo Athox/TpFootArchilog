@@ -9,11 +9,19 @@
 	<div class="form-group">
 		<input type="hidden" name="id" value="<?= $match['id_match']?>"/>
 		<label for="equip_dom">Equipe à domicile:</label> 
-		<input class="form-control" id="equipe_dom" type="text" name="equipe_dom" value="<?= $match['equipe_dom']?>"/>
+		<select class="form-control" id="equipe_dom" name="equipe_dom">
+			<?php foreach ($equipes as $elem):?>
+				<option value="<?= $elem['nom_equipe']?>" <?php if($elem['nom_equipe']==$match['equipe_dom']){echo 'selected="selected"';}?>><?= $elem['nom_equipe']?></option>
+			<?php endforeach;?>
+		</select>
 	</div>	
 	<div class="form-group">
 		<label for="equip_ext">Equipe en déplacement:</label> 
-		<input class="form-control" id="equipe_ext" type="text" name="equipe_ext" value="<?= $match['equipe_ext']?>"/>
+		<select class="form-control" id="equipe_ext" name="equipe_ext">
+			<?php foreach ($equipes as $elem):?>
+				<option value="<?= $elem['nom_equipe']?>" <?php if($elem['nom_equipe']==$match['equipe_ext']){echo 'selected="selected"';}?>><?= $elem['nom_equipe']?></option>
+			<?php endforeach;?>
+		</select>
 	</div>
 	<div class="form-group">
 		<label for="date">Date (AAAA-MM-JJ):</label> 
